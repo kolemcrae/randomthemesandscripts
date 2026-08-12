@@ -1,0 +1,155 @@
+/* ==========================================================================
+   DRACULA THEME FOR LOGSEQ DB Note: unofficial, just made for personal use
+   ========================================================================== */
+
+/* 1. GLOBAL COLOR TOKENS (Overrides Logseq DB internal variables) */
+:root,
+html,
+body,
+.dark,
+[data-theme="dark"],
+.dark-theme {
+  --dracula-bg: #282a36;
+  --dracula-dark-bg: #21222c;
+  --dracula-current-line: #44475a;
+  --dracula-fg: #f8f8f2;
+  --dracula-comment: #6272a4;
+  --dracula-cyan: #8be9fd;
+  --dracula-green: #50fa7b;
+  --dracula-orange: #ffb86c;
+  --dracula-pink: #ff79c6;
+  --dracula-purple: #bd93f9;
+
+  /* Logseq DB Custom Property Mapping */
+  --ls-primary-background-color: var(--dracula-bg) !important;
+  --ls-secondary-background-color: var(--dracula-dark-bg) !important;
+  --ls-tertiary-background-color: var(--dracula-current-line) !important;
+  --ls-main-content-background: var(--dracula-bg) !important;
+  --ls-primary-text-color: var(--dracula-fg) !important;
+  --ls-secondary-text-color: var(--dracula-comment) !important;
+  --ls-link-text-color: var(--dracula-cyan) !important;
+  --ls-heading-color: var(--dracula-purple) !important;
+  --ls-border-color: #383a59 !important;
+
+  /* Tailwind / DB Token Overrides */
+  --bg-primary: var(--dracula-bg) !important;
+  --bg-secondary: var(--dracula-dark-bg) !important;
+  --bg-base: var(--dracula-bg) !important;
+  --color-bg-base: var(--dracula-bg) !important;
+}
+
+/* --------------------------------------------------------------------------
+   2. UNIFY ALL BACKGROUNDS (ELIMINATES MISMATCHED GUTTERS)
+   -------------------------------------------------------------------------- */
+html,
+body,
+#root,
+#app,
+#app-container,
+#main-container,
+#main-content-container,
+main,
+[role="main"],
+.main-container,
+.journal,
+.journals,
+.page-container,
+.editor {
+  background-color: #282a36 !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+}
+
+/* Strip any background box surrounding journal cards/blocks */
+main > div,
+main section,
+[role="main"] > div {
+  background-color: transparent !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. DAY SEPARATORS (GUARANTEED FOR LOGSEQ DB)
+   -------------------------------------------------------------------------- */
+/* Journal Date Titles */
+main h1,
+[role="main"] h1,
+h1.title {
+  color: #bd93f9 !important; /* Dracula Purple */
+  font-weight: 600 !important;
+}
+
+/* Draw a clear 1px line above every journal day block after the first one */
+main div:has(> h1) ~ div:has(> h1),
+main div + div:has(h1),
+section + section:has(h1) {
+  border-top: 1px solid #44475a !important;
+  margin-top: 3rem !important;
+  padding-top: 2.5rem !important;
+}
+
+/* Fallback: If DB wraps days in plain divs, border the subsequent h1 containers directly */
+main h1:not(:first-of-type) {
+  border-top: 1px solid #44475a !important;
+  margin-top: 3rem !important;
+  padding-top: 2.5rem !important;
+}
+
+/* --------------------------------------------------------------------------
+   4. SIDEBARS & HEADER UTILITIES
+   -------------------------------------------------------------------------- */
+#left-sidebar,
+#right-sidebar,
+aside,
+header,
+.cp__header {
+  background-color: #21222c !important;
+}
+
+header button,
+header .icon,
+header a {
+  background-color: transparent !important;
+  color: #f8f8f2 !important;
+}
+
+header button:hover,
+header .icon:hover {
+  background-color: #44475a !important;
+  border-radius: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   5. BULLETS, TAGS & SUBTLE BLOCK HIGHLIGHTS
+   -------------------------------------------------------------------------- */
+.bullet {
+  background-color: #bd93f9 !important;
+}
+
+a.tag,
+a.as-tag,
+[data-ref*="#"] {
+  background-color: #44475a !important;
+  color: #ff79c6 !important;
+  border-radius: 6px !important;
+  padding: 2px 8px !important;
+}
+
+/* Subtle Block Focus & Hover */
+.ls-block:hover {
+  background-color: rgba(68, 71, 90, 0.2) !important;
+  border-radius: 4px;
+}
+
+.ls-block:focus-within,
+.editor-inner:focus-within {
+  background-color: rgba(68, 71, 90, 0.35) !important;
+  border-left: 2px solid #bd93f9 !important;
+}
+
+/* Experimental Journal Entry Bottom Divider */
+main section[data-type="journal-entry"],
+div[role="main"] > div > div:not(:last-child) {
+  border-bottom: 1px solid #44475a !important;
+  padding-bottom: 2.5rem !important;
+  margin-bottom: 2.5rem !important;
+}
