@@ -1,0 +1,13 @@
+[Unit]
+Description=BUSY Bar Blue Jays Score Tracker
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/path/to/python/python /path/to/file/you/busybar-jays.py
+Restart=always
+RestartSec=5
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=default.target
